@@ -1,41 +1,36 @@
 <!DOCTYPE html>
 <html lang="it">
-{% include head.html %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Tua Pagina</title>
+</head>
 <body>
-  {% include header.html %}
-  
-  <main>
-    <!-- Sezione Hero -->
-    <section class="hero">
-      <div class="container">
-        <h1>Benvenuti nel nostro gruppo!</h1>
-        <p>Un luogo dove i giovani possono collaborare, creare e crescere insieme.</p>
-        <a href="/chi-siamo/" class="btn">Scopri di più</a>
-      </div>
-    </section>
+    <div id="head"></div>
+    <div id="header"></div>
+    <div id="content">
+        <!-- Il contenuto principale della tua pagina -->
+    </div>
+    <div id="footer"></div>
 
-    <!-- Sezione Iniziative -->
-    <section class="highlights">
-      <div class="container">
-        <h2>Le nostre iniziative</h2>
-        <div class="cards">
-          <div class="card">
-            <h3>Laboratori Creativi</h3>
-            <p>Attività per stimolare la creatività e l'innovazione.</p>
-          </div>
-          <div class="card">
-            <h3>Eventi di Formazione</h3>
-            <p>Workshop e corsi per crescere insieme.</p>
-          </div>
-          <div class="card">
-            <h3>Supporto ai Giovani</h3>
-            <p>Un aiuto concreto per i giovani che vogliono emergere.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+    <script>
+        // Funzione per caricare un file HTML e inserirlo in un elemento specifico
+        function includeHTML(elementId, filePath) {
+            const element = document.getElementById(elementId);
+            fetch(filePath)
+                .then(response => response.text())
+                .then(data => {
+                    element.innerHTML = data;
+                })
+                .catch(error => console.log('Errore nel caricamento del file:', error));
+        }
 
-  {% include footer.html %}
+        // Includi i vari componenti
+        window.onload = function() {
+            includeHTML('head', '/_includes/head.html');
+            includeHTML('header', '/_includes/header.html');
+            includeHTML('footer', '/_includes/footer.html');
+        };
+    </script>
 </body>
 </html>
